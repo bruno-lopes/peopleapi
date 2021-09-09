@@ -1,6 +1,7 @@
 package one.digitalinnovation.personapi.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,14 @@ public class PersonService {
         return allPeople.stream()
                 .map(personMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+
+    public PersonDTO findById(Long id) throws Exception {
+        Optional<Person> personFound = personRepository.findById(id);
+        
+        return personMapper.toDTO(personFound.orElseThrow(
+            ()-> new Exception("Pessoa não encontrada")
+        ));
     }
 }
