@@ -1,5 +1,9 @@
 package one.digitalinnovation.personapi.service;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +31,12 @@ public class PersonService {
         return MessageResponseDTO.builder()
             .message("Created person with ID " + savedPerson.getId())        
             .build();
+    }
+
+    public List<PersonDTO> listAll() {
+        List<Person> allPeople = personRepository.findAll();
+        return allPeople.stream()
+                .map(personMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }
