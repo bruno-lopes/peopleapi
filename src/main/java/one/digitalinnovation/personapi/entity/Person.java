@@ -1,5 +1,6 @@
 package one.digitalinnovation.personapi.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Person {
     @Column(nullable = false)
     private String lastName;
 
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @Column(nullable = false, unique = true)
     private String cpf;
