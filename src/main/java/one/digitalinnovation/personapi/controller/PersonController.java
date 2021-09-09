@@ -56,7 +56,7 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public void updateById(@PathVariable(name = "id") Long id, @RequestBody @Valid PersonDTO personDTO) throws Exception {
-        personService.updateById(id, personDTO);
+    public MessageResponseDTO updateById(@PathVariable(name = "id") Long id, @RequestBody @Valid PersonDTO personDTO) throws Exception {
+        return personService.updateById(id, personDTO);
     }
 }
